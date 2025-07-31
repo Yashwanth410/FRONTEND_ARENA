@@ -1,6 +1,4 @@
-Of course! Here is a professionally written README.md file based on the provided project files. It incorporates the project's metadata, features, and setup instructions into a clear and comprehensive format.
 
----
 
 # SILVER Authentication
 
