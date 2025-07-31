@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SILVER | Authentication</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              'sans': ['Poppins', 'sans-serif'],
+              'orbitron': ['Orbitron', 'sans-serif'],
+            },
+            colors: {
+              'primary-light': '#0866ff',
+              'primary-dark': '#4facfe',
+              'text-primary-light': '#0d0d0e',
+              'text-primary-dark': '#e4e6eb',
+              'text-secondary-light': '#606770',
+              'text-secondary-dark': '#dadada',
+              'card-bg-light': '#ffffff',
+              'card-bg-dark': '#0a0a0a',
+              'logo-light': '#5c5f62',
+              'logo-dark': '#d2d3d4',
+              'input-border-light': '#ddd',
+              'input-border-dark': '#444444',
+            },
+            animation: {
+              'progress-bar': 'progress-bar 3s ease-out forwards',
+              'fade-in': 'fadeIn 0.8s ease-in-out forwards',
+              'orbit-flare': 'spin 4s linear infinite',
+              'rainbow-text': 'rainbow-text 3s ease-in-out infinite',
+            },
+            keyframes: {
+              'progress-bar': {
+                '0%': { transform: 'scaleX(0)' },
+                '100%': { transform: 'scaleX(1)' },
+              },
+              'fadeIn': {
+                '0%': { opacity: '0', transform: 'translateY(10px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              'spin': {
+                'to': { transform: 'rotate(360deg)' },
+              },
+              'rainbow-text': {
+                '0%, 100%': { 'background-size': '200% 200%', 'background-position': 'left center' },
+                '50%': { 'background-size': '200% 200%', 'background-position': 'right center' },
+              },
+            }
+          }
+        }
+      }
+    </script>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@18.2.0",
+    "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+    "react/jsx-runtime": "https://esm.sh/react@18.2.0/jsx-runtime",
+    "@google/genai": "https://esm.sh/@google/genai",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.1/",
+    "react/": "https://esm.sh/react@^19.1.1/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
