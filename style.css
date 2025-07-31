@@ -1,0 +1,133 @@
+/* ---  1. Global Styles & Theme Variables (Matching Screenshot) --- */
+:root {
+    /* Light Theme (From Screenshot) */
+    --bg-light: #f0f2f5;
+    --card-bg-light: #ffffff;
+    --logo-color-light: #8a929e;
+    --text-primary-light: #1c1e21;
+    --text-secondary-light: #606770;
+    --primary-blue-light: #0866ff; /* A standard, strong blue */
+    --input-border-light: #ddd;
+    --star-trail-light: rgba(0, 0, 0, 0.4); /* Dark stars for light bg */
+    --star-speck-light: #005c97;
+
+    /* Dark Theme (Inspired by previous design) */
+    --bg-dark: #18191a;
+    --card-bg-dark: #242526;
+    --logo-color-dark: #b0b3b8;
+    --text-primary-dark: #e4e6eb;
+    --text-secondary-dark: #b0b3b8;
+    --primary-blue-dark: #4facfe;
+    --input-border-dark: #3e4042;
+    --star-trail-dark: rgba(255, 255, 255, 0.5); /* Light stars for dark bg */
+    --star-speck-dark: #00d4ff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--bg-light);
+    color: var(--text-primary-light);
+    transition: background-color 0.3s, color 0.3s;
+    overflow: hidden;
+}
+
+body.dark-mode {
+    background-color: var(--bg-dark);
+    color: var(--text-primary-dark);
+}
+
+/* --- 2. Animated Star Trail Background --- */
+@keyframes rotate-stars { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+#star-field { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+.star {
+    position: absolute; left: 50%; top: 100%; width: var(--star-size); height: 200vh;
+    animation: rotate-stars linear infinite; animation-duration: var(--animation-duration);
+}
+.star::before {
+    content: ''; position: absolute; width: 100%; height: 1px; border-radius: 50%;
+    top: -100vh; transform: translateY(-50vh);
+    background: var(--star-trail-light);
+}
+body.dark-mode .star::before { background: var(--star-trail-dark); }
+.star.blue::before { background: var(--star-speck-light); }
+body.dark-mode .star.blue::before { background: var(--star-speck-dark); }
+
+/* --- 3. The Clean Auth Container --- */
+.auth-container {
+    width: 396px; /* Precise width */
+    max-width: 90%;
+    padding: 30px;
+    border-radius: 20px;
+    background-color: var(--card-bg-light);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+    transition: background-color 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+    position: relative;
+    z-index: 1; /* Make sure it's above the star field */
+}
+body.dark-mode .auth-container {
+    background-color: var(--card-bg-dark);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* --- 4. Form Elements (Screenshot Perfect) --- */
+.logo {
+    text-align: center; font-size: 2.2rem; font-weight: 600; margin-bottom: 25px;
+    color: var(--logo-color-light); transition: color 0.3s;
+}
+body.dark-mode .logo { color: var(--logo-color-dark); }
+
+.form-title { font-size: 1.7rem; font-weight: 600; text-align: center; margin-bottom: 5px; }
+.form-subtitle { font-size: 0.9rem; color: var(--text-secondary-light); text-align: center; margin-bottom: 25px; transition: color 0.3s; }
+body.dark-mode .form-subtitle { color: var(--text-secondary-dark); }
+
+.input-group { margin-bottom: 15px; }
+input {
+    width: 100%; padding: 14px 16px; border-radius: 8px; border: 1px solid var(--input-border-light);
+    background-color: transparent; font-family: 'Poppins', sans-serif; font-size: 0.95rem;
+    color: var(--text-primary-light); transition: all 0.3s;
+}
+input::placeholder { color: #888; }
+body.dark-mode input { border-color: var(--input-border-dark); color: var(--text-primary-dark); }
+input:focus { outline: none; border-color: var(--primary-blue-light); box-shadow: 0 0 0 2px rgba(8, 102, 255, 0.2); }
+body.dark-mode input:focus { border-color: var(--primary-blue-dark); box-shadow: 0 0 0 2px rgba(79, 172, 254, 0.2); }
+
+.submit-btn {
+    width: 100%; padding: 12px; border: none; border-radius: 8px;
+    background: #0d6efd; /* Matching the blue */
+    color: white; font-size: 1.05rem; font-weight: 500;
+    cursor: pointer; transition: background-color 0.2s, transform 0.2s;
+}
+body.dark-mode .submit-btn { background-color: var(--primary-blue-dark); }
+.submit-btn:hover { background-color: #0b5ed7; transform: translateY(-2px); }
+body.dark-mode .submit-btn:hover { background-color: #5bc0de; }
+
+.form-toggle-text { text-align: center; margin-top: 25px; font-size: 0.9rem; }
+.form-toggle-text a { color: var(--primary-blue-light); font-weight: 500; text-decoration: none; }
+body.dark-mode .form-toggle-text a { color: var(--primary-blue-dark); }
+
+/* --- 5. Form Switching Animation (Unchanged) --- */
+.form-section {
+    position: absolute; width: calc(100% - 60px); top: 140px; left: 30px;
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+    pointer-events: none;
+}
+.form-section.active { opacity: 1; transform: translateY(0); pointer-events: all; position: relative; top: auto; left: auto; }
+
+/* --- 6. Clean Theme Switcher --- */
+.theme-btn {
+    position: fixed; top: 15px; right: 15px; width: 40px; height: 40px;
+    border-radius: 50%; border: 1px solid #dcdfe3; background-color: var(--card-bg-light);
+    cursor: pointer; display: flex; justify-content: center; align-items: center;
+    transition: all 0.3s; z-index: 10;
+}
+body.dark-mode .theme-btn { background-color: var(--card-bg-dark); border-color: var(--input-border-dark); }
+.theme-btn svg { width: 22px; height: 22px; transition: transform 0.4s ease; }
+.theme-btn:hover svg { transform: scale(1.15) rotate(15deg); }
